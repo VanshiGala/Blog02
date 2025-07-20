@@ -1,5 +1,5 @@
 import { Router } from "express";
-import User from "../models/User.js";
+import User from "../models/user.js";
 import { checkForAuthentiationCookie } from "../middlewares/authentication.js";
 const router = Router();
 
