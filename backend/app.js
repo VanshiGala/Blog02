@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import express from'express';
 import path from "path"
 import mongoose from "mongoose"
@@ -9,15 +10,13 @@ import Blog from './models/blog.js'
 import cors from 'cors'
 
 const app = express();
-mongoose.connect("mongodb://localhost:27017/blogify").then(e=>{
+const PORT = process.env.PORT 
+mongoose.connect(process.env.MONGO_URL).then(e=>{
     console.log("MongoDB connected")
 })
 app.use(cookieParser())
 app.use(express.json());
-app.use(cors({
-  origin: 'http://localhost:5173',
-  credentials: true
-}));
+app.use(cors());
 app.use(express.urlencoded({extended : true}))
 app.use(express.static(path.resolve("./public")));
 app.use("/api/user", userRoute)
@@ -30,6 +29,6 @@ app.get("/",async  (req,res)=>{
    res.json({ user: req.user, blogs: allBlogs });
 })
 
-app.listen(5000,()=>{
-    console.log("Server is running on port 5000")
+app.listen(()=>{
+    console.log(`Server is running on port ${PORT}`)
 })
