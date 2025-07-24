@@ -11,7 +11,7 @@ import cors from 'cors'
 
 const app = express();
 const PORT = process.env.PORT 
-mongoose.connect(process.env.MONGO_URL).then(e=>{
+mongoose.connect(process.env.MONGO_URL || "mongodb://localhost:27017/blogify").then(e=>{
     console.log("MongoDB connected")
 })
 app.use(cookieParser())
