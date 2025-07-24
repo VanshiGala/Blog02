@@ -29,6 +29,11 @@ app.get("/",async  (req,res)=>{
    res.json({ user: req.user, blogs: allBlogs });
 })
 
+app.get("/", (req, res) => {
+  res.send("Server is live ");
+});
+
+
 app.listen(()=>{
     console.log(`Server is running on port ${PORT}`)
 })
