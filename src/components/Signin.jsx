@@ -2,7 +2,8 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
-const API = process.env.REACT_APP_API_URL;
+const API = import.meta.env.VITE_API_URL;
+
 
 function Signin() {
   const { login } = useContext(AuthContext);
