@@ -18,9 +18,13 @@ function BlogDetails() {
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${API}/api/blogs/comment/${id}`, {
-        content: comment,
-      });
+      await axios.post(
+        `${API}/api/blogs/comment/${id}`,
+        {
+          content: comment,
+        },
+        { withCredentials: true }
+      );
       alert("Comment added");
       setComment("");
     } catch (err) {

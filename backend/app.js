@@ -27,9 +27,8 @@ app.use(cors({
 );
 app.use(express.urlencoded({extended : true}))
 app.use(express.static(path.resolve("./public")));
-app.use("/api/user", userRoute)
-
 app.use(checkForAuthentiationCookie("token"))
+app.use("/api/user", userRoute)
 app.use("/api/blogs", blogRoute)
 
 app.get("/",async  (req,res)=>{
