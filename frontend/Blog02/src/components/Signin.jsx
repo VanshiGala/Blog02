@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
 const API = import.meta.env.VITE_API_URL;
 
-
 function Signin() {
   const { login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
@@ -16,10 +15,16 @@ function Signin() {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`${API}/api/user/signin`, {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        `${API}/api/user/signin`,
+        {
+          email,
+          password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
       login(res.data.user);
       navigate("/");
     } catch (err) {

@@ -28,6 +28,8 @@ router.post("/signin", async (req, res) => {
     const token = await User.matchPasswordAndGenerateToken(email, password);
     res.cookie("token", token, {
       httpOnly: true,
+      secure: true,
+  sameSite: "None"
     }).json({ message: "Login successful" });
   } catch (err) {
     res.status(401).json({ error: "Invalid email or password" });
