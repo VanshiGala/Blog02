@@ -41,7 +41,11 @@ function BlogDetails() {
 
       {blog.coverImageURL && (
         <img
-          src={blog.coverImageURL}
+          src={
+            blog.coverImageURL.startsWith("http")
+              ? blog.coverImageURL
+              : `${API}${blog.coverImageURL}`
+          }
           className="w-50 h-50 rounded-lg mb-6 shadow"
         />
       )}

@@ -22,7 +22,11 @@ function Home() {
           className="flex flex-col bg-yellow-50 rounded-lg shadow-md hover:shadow-xl transition duration-300 overflow-hidden"
         >
           <img
-            src={`${API}${blog.coverImageURL}`}
+            src={
+              blog.coverImageURL.startsWith("http")
+                ? blog.coverImageURL
+                : `${API}${blog.coverImageURL}`
+            }
             alt={blog.title}
             className="w-full h-48 object-cover"
           />
