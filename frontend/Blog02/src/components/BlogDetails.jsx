@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+const API = import.meta.env.VITE_API_URL;
 
 function BlogDetails() {
   const { id } = useParams();
@@ -9,7 +10,7 @@ function BlogDetails() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/blogs/${id}`)
+      .get(`${API}/api/blogs/${id}`)
       .then((res) => setBlog(res.data))
       .catch((err) => console.error("Error fetching blog:", err));
   }, [id]);
@@ -17,7 +18,7 @@ function BlogDetails() {
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:5000/api/blogs/comment/${id}`, {
+      await axios.post(`${API}/api/blogs/comment/${id}`, {
         content: comment,
       });
       alert("Comment added");

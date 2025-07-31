@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+const API = import.meta.env.VITE_API_URL;
 
 function AddBlog() {
   const [formData, setFormData] = useState({
@@ -31,7 +32,7 @@ function AddBlog() {
     data.append("body", formData.body);
 
     try {
-      await axios.post("http://localhost:5000/api/blogs", data, {
+      await axios.post(`${API}/api/blogs`, data, {
         withCredentials: true,
       });
       alert("Blog published successfully!");
