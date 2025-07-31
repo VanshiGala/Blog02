@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext";
+const API = import.meta.env.VITE_API_URL;
+
 
 function Signin() {
   const { login } = useContext(AuthContext);
@@ -14,7 +16,7 @@ function Signin() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:5000/api/user/signin", {
+      const res = await axios.post(`${API}/api/user/signin`, {
         email,
         password,
       });

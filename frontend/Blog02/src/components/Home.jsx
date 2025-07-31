@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+const API = import.meta.env.VITE_API_URL;
+
 
 function Home() {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/")
+      .get(`${API}/`)
       .then((res) => setBlogs(res.data.blogs))
       .catch((err) => console.error(err));
   }, []);
@@ -20,7 +22,7 @@ function Home() {
           className="flex flex-col bg-yellow-50 rounded-lg shadow-md hover:shadow-xl transition duration-300 overflow-hidden"
         >
           <img
-            src={`http://localhost:5000${blog.coverImageURL}`}
+            src={`${API}${blog.coverImageURL}`}
             alt={blog.title}
             className="w-full h-48 object-cover"
           />

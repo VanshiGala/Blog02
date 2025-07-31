@@ -16,7 +16,14 @@ mongoose.connect(process.env.MONGO_URL || "mongodb://localhost:27017/blogify").t
 })
 app.use(cookieParser())
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: [
+      "https://blog02-frontend.vercel.app" ,
+      "http://localhost:5173" 
+    ],
+    credentials: true, 
+  })
+);
 app.use(express.urlencoded({extended : true}))
 app.use(express.static(path.resolve("./public")));
 app.use("/api/user", userRoute)

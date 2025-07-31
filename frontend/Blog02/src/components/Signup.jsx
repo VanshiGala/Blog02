@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+const API = import.meta.env.VITE_API_URL;
+
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -18,11 +20,9 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/user/signup",
-        formData,
-        { withCredentials: true }
-      );
+      const res = await axios.post(`${API}/api/user/signup`, formData, {
+        withCredentials: true,
+      });
       alert("Signup successful!");
       console.log(res.data);
     } catch (err) {
